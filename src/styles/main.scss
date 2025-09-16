@@ -1,4 +1,6 @@
+// ================================
 // Variables
+// ================================
 $color-nav: #060b35;
 $color-nav-hover: #00acdc;
 $color-title-hover: #34568b;
@@ -17,7 +19,14 @@ $container-padding-vertical: 50px;
 $container-padding-horizontal: 40px;
 $transition-time: 300ms;
 
-/* Reset-ish */
+// Stars variables
+$stars-size: 16px;
+$stars-color: #ffd700;
+$stars-color-inactive: #ccc;
+
+// ================================
+// Reset-ish
+// ================================
 * { box-sizing: border-box; }
 html, body {
   height: 100%;
@@ -27,12 +36,14 @@ html, body {
 }
 a { text-decoration: none; }
 
-/* Header */
+// ================================
+// Header
+// ================================
 .site-header {
   background: $color-white;
   border-bottom: 1px solid $color-border;
 
-  .site-header__inner {
+  &__inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 40px;
@@ -46,6 +57,7 @@ a { text-decoration: none; }
     color: $color-nav;
   }
 }
+
 .nav {
   &__list {
     list-style: none;
@@ -67,7 +79,9 @@ a { text-decoration: none; }
   }
 }
 
-/* Catalog container */
+// ================================
+// Catalog
+// ================================
 .catalog {
   background: $color-bg-catalog;
 
@@ -92,7 +106,6 @@ a { text-decoration: none; }
   }
 }
 
-/* Responsive breakpoints for columns */
 @media (min-width: 488px) {
   .catalog__grid { grid-template-columns: repeat(2, $card-width); }
 }
@@ -103,9 +116,12 @@ a { text-decoration: none; }
   .catalog__grid { grid-template-columns: repeat(4, $card-width); }
 }
 
-/* Card BEM */
+// ================================
+// Card
+// ================================
 .card {
-  position: relative; // для z-index при hover
+
+  position: relative;
   width: $card-width;
   background: $color-white;
   border-radius: 12px;
@@ -163,12 +179,40 @@ a { text-decoration: none; }
   }
 }
 
-/* Footer */
+// ================================
+// Stars
+// ================================
+.stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+
+  &__star {
+    width: $stars-size;
+    height: $stars-size;
+    display: inline-block;
+    background-color: $stars-color-inactive;
+    clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+      50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+    );
+    transition: transform $transition-time, background-color $transition-time;
+
+    &--active { background-color: $stars-color; }
+    &:hover { transform: scale(1.2); }
+  }
+}
+
+// ================================
+// Footer
+// ================================
 .site-footer {
   padding: 20px 40px;
   text-align: center;
   color: $color-text-footer;
 }
 
-/* Accessibility helpers */
+// ================================
+// Accessibility
+// ================================
 [aria-hidden="true"] { pointer-events: none; }
